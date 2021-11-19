@@ -1,4 +1,5 @@
-from django.forms import forms, ModelForm, CharField, TextInput, Textarea, BooleanField, CheckboxInput
+from django.forms import forms, ModelForm,NumberInput,\
+    ChoiceField, TextInput, Textarea, CheckboxInput
 
 from .models import Variant, ProductVariantPrice
 
@@ -18,3 +19,4 @@ class ProductForm(ModelForm):
         model = ProductVariantPrice
         # fields = ["customer","product"]
         fields = '__all__'
+
