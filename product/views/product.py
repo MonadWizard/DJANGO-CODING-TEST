@@ -33,17 +33,16 @@ def search(request):
             queryset_list = queryset_list.filter(product_variant_one__variant__title__contains=variant)
 
     # price
-
     price_from = request.GET.get('price_from', 0)
     price_to = request.GET.get('price_to', 1000000)
     queryset_list = queryset_list.filter(price__gte=price_from).filter(price__lte=price_to)
 
-    # # bedrooms
-    # if 'price' in request.GET:
-    #     price = request.GET['price']
-    #     if price:
-    #         queryset_list = queryset_list.filter(price__lte=price)   # search enter description
-    #
+    # # Date
+    if 'date' in request.GET:
+        date = request.GET['date']
+        if date:
+            queryset_list = queryset_list.filter(created_at__date=date)
+
 
 
     context = {
