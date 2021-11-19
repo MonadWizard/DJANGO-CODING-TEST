@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from product.models import Variant, ProductVariantPrice
 
@@ -18,7 +19,7 @@ class CreateProductView(generic.TemplateView):
 
 
 def search(request):
-    queryset_list = ProductVariantPrice.objects.order_by('-created_at')
+    queryset_list = ProductVariantPrice.objects.order_by('created_at')
 
     # title
     if 'title' in request.GET:
@@ -43,17 +44,23 @@ def search(request):
         if date:
             queryset_list = queryset_list.filter(created_at__date=date)
 
+    paginator = Paginator(queryset_list, 2)
+    page = request.GET.get('page')
+    try:
+        paged_listing = paginator.page(page)
+    except PageNotAnInteger:
+        paged_listing = paginator.page(1)
+    except EmptyPage:
+        paged_listing = paginator.page(paginator.num_pages)
+
 
 
     context = {
-        # 'state_choices':state_choices,
-        # 'bedroom_choices':bedroom_choices,
         'price_from': price_from,
         'price_to': price_to,
         'varient_choices':varient_choices,
-        'listings':queryset_list,
+        'listings':paged_listing,
         'values': request.GET,
-
     }
     template_name = 'products/list.html'
     return render(request,template_name, context)
