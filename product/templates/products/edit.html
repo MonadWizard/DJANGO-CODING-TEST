@@ -1,0 +1,101 @@
+{% extends 'backend/base.html' %}
+
+{% block title %} Product Edit {% endblock %}
+
+{% block content %}
+
+
+<!--<form method="post" action="/update/{{ productVP.id}}" >-->
+
+<!--    {% csrf_token %}-->
+
+<!--  <div class="form-row">-->
+<!--    <div class="col-md-4 mb-3">-->
+<!--      <label for="validationDefault01">Title</label>-->
+<!--      <input name='title' type="text" class="form-control" id="validationDefault01" placeholder="Title" value="{{ productVP.product.title}}" required>-->
+<!--    </div>-->
+<!--    <div class="col-md-4 mb-3">-->
+<!--      <label for="validationDefault02">Price</label>-->
+<!--      <input name='price' type="text" class="form-control" id="validationDefault02" placeholder="Price" value="{{ productVP.price }}" required>-->
+<!--    </div>-->
+
+<!--    <div class="col-md-4 mb-3">-->
+<!--      <label for="validationDefault02">Stock</label>-->
+<!--      <input name='stock' type="text" class="form-control" id="validationDefault02new1" placeholder="Stock" value="{{ productVP.stock }}" required>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+
+<!--  <div class="form-row">-->
+<!--    <div class="col-md-4 mb-3">-->
+<!--      <label for="validationDefaultUsername">Variant 1</label>-->
+<!--      <div class="input-group">-->
+<!--        <div class="input-group-prepend">-->
+<!--          <span class="input-group-text" id="inputGroupPrepend2">1</span>-->
+<!--        </div>-->
+<!--        <input name='product_variant_one' type="text" class="form-control" id="validationDefaultUsername" placeholder="1st Variant" aria-describedby="inputGroupPrepend2" value="{{ productVP.product_variant_one.variant_title}}">-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+<!--    <div class="col-md-4 mb-3">-->
+<!--      <label for="validationDefaultUsername">Variant 2</label>-->
+<!--      <div class="input-group">-->
+<!--        <div class="input-group-prepend">-->
+<!--          <span class="input-group-text" id="inputGroupPrepend2new1">2</span>-->
+<!--        </div>-->
+<!--        <input name='product_variant_two' type="text" class="form-control" id="validationDefaultUsernamenew1" placeholder="2nd Variant" aria-describedby="inputGroupPrepend2" value="{{ productVP.product_variant_two.variant_title}}">-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--      <div class="col-md-4 mb-3">-->
+<!--      <label for="validationDefaultUsername">Variant 3</label>-->
+<!--      <div class="input-group">-->
+<!--        <div class="input-group-prepend">-->
+<!--          <span class="input-group-text" id="inputGroupPrepend2new">3</span>-->
+<!--        </div>-->
+<!--        <input name='product_variant_three' type="text" class="form-control" id="validationDefaultUsernamenew" placeholder="3rd Variant" aria-describedby="inputGroupPrepend2" value="{{ productVP.product_variant_three.variant_title}}">-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+
+<!--      <div class="form-row">-->
+<!--    <div class="col-md-12 mb-6">-->
+<!--      <label for="validationDefault02">Description</label>-->
+<!--      <input name='description' type="text" class="form-control" id="validationDefault011" placeholder="Description" value="{{ productVP.product.description}}" required>-->
+
+<!--    </div>-->
+<!--    <input name='id' type="text" class="form-control" id="validationDefault" readonly value="{{ productVP.id}}" >-->
+
+
+<!--  </div>-->
+
+
+<!--  <button class="btn btn-primary" type="submit">Submit form</button>-->
+
+<!--</form>-->
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-body">
+
+            <form  method="POST">
+                {% csrf_token %}
+
+                {{ form }}
+
+                <input type="submit" name="Submit">
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from product.models import Variant, ProductVariantPrice, ProductVariant
+
+from product.forms import ProductForm
 
 
 
@@ -32,7 +34,9 @@ def search(request):
     if 'variant' in request.GET:
         variant = request.GET['variant']
         if variant:
-            queryset_list = queryset_list.filter(product_variant_one__variant__title__contains=variant)
+            queryset_list = queryset_list.filter(product_variant_one__variant__title__contains=variant) \
+                            | queryset_list.filter(product_variant_two__variant__title__contains=variant) \
+                            | queryset_list.filter(product_variant_three__variant__title__contains=variant)
 
     # price
     price_from = request.GET.get('price_from', 0)
@@ -67,4 +71,19 @@ def search(request):
     return render(request,template_name, context)
 
 
+def edit(request, edit_id):
+    # if page not available then show 404
+    productVP = get_object_or_404(ProductVariantPrice, pk=edit_id)  # (model,pk)
+    form = ProductForm(instance=productVP)
+
+    if request.method == "POST":
+        # print("printing post : ",request.POST)
+        form = ProductForm(request.POST, instance=productVP)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'productVP':productVP, 'form':form}
+    template_name = 'products/edit.html'
+    return render(request,template_name, context)
 
