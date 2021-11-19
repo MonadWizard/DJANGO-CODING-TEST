@@ -70,7 +70,7 @@
 
                          <tr>
                     <td>{{ listing.id}}</td>
-                    <td>{{ listing.product.title}}<br> Created at : </td>
+                    <td>{{ listing.product.title}}<br> Created at : {{ listing.created_at}}</td>
                     <td>{{ listing.product.description}}</td>
                     <td>
                         <dl class="row mb-0" style="height: 80px; overflow: hidden" id="variant">
@@ -123,52 +123,52 @@
 
 
 
-                  <div class="row">
-                    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
 
-                      {% if listings.has_other_pages %}
-                        <ul class="pagination">
-                          {% if listings.has_previous %}
-                            <li class="page-item">
-                              <a href="?page={{ listings.previous_page_number }}" class="page-link">&laquo;</a>
-                            </li>
-                            {% else %}
-                              <li class="page-item disabled"></li>
-                              <a class="page-link">&laquo;</a>
-                          {% endif  %}
-
-
-
-                          {% for i in listings.paginator.page_range %}
-                            {% if listings.number == i %}
-                              <li class="page-item active">
-                                <a class="page-link">{{i}}</a>
-                              </li>
-                            {% else %}
-                              <li class="page-item">
-                                <a href="?page={{i}}" class="page-link">{{i}}</a>
-
-                              </li>
-                            {% endif %}
-                          {% endfor  %}
+          {% if listings.has_other_pages %}
+            <ul class="pagination">
+              {% if listings.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{ listings.previous_page_number }}" class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                  <li class="page-item disabled"></li>
+                  <a class="page-link">&laquo;</a>
+              {% endif  %}
 
 
-                        {% if listings.has_next %}
-                          <li class="page-item">
-                            <a href="?page={{ listings.next_page_number }}" class="page-link">&raquo;</a>
-                          </li>
-                          {% else %}
-                            <li class="page-item disabled"></li>
-                            <a class="page-link">&raquo;</a>
-                        {% endif  %}
+
+              {% for i in listings.paginator.page_range %}
+                {% if listings.number == i %}
+                  <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+                  </li>
+                {% else %}
+                  <li class="page-item">
+                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+
+                  </li>
+                {% endif %}
+              {% endfor  %}
 
 
-                        </ul>
-                      {% else %}
-                      {% endif %}
+            {% if listings.has_next %}
+              <li class="page-item">
+                <a href="?page={{ listings.next_page_number }}" class="page-link">&raquo;</a>
+              </li>
+              {% else %}
+                <li class="page-item disabled"></li>
+                <a class="page-link">&raquo;</a>
+            {% endif  %}
 
-                    </div>
-                  </div>
+
+            </ul>
+          {% else %}
+          {% endif %}
+
+        </div>
+      </div>
 
 
 
