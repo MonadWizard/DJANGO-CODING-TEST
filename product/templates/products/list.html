@@ -20,9 +20,9 @@
                     <option selected="true" disabled="disabled">--Select A Variant--</option>
 
                     {% for v in varient_list %}
-                    <option value="{{ v.title }}"
+                    <option value="{{ v.variant.title }}"
                             selected
-                    >{{ v.title }}</option>
+                    >{{ v.variant.title }}</option>
                   {% endfor  %}
 
                 </select>
