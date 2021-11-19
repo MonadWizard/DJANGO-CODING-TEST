@@ -4,7 +4,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from product.models import Variant, ProductVariantPrice
 
-from product.choices import varient_choices
 
 
 class CreateProductView(generic.TemplateView):
@@ -28,6 +27,7 @@ def search(request):
             queryset_list = queryset_list.filter(product__title__contains=title)
 
     # variant
+    varient_list = Variant.objects.all()
     if 'variant' in request.GET:
         variant = request.GET['variant']
         if variant:
@@ -56,9 +56,9 @@ def search(request):
 
 
     context = {
+        'varient_list': varient_list,
         'price_from': price_from,
         'price_to': price_to,
-        'varient_choices':varient_choices,
         'listings':paged_listing,
         'values': request.GET,
     }

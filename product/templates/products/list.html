@@ -19,13 +19,10 @@
                 <select name="variant" id="" class="form-control">
                     <option selected="true" disabled="disabled">--Select A Variant--</option>
 
-                    {% for key,value in varient_choices.items %}
-                    <option value="{{ key }}"
-
-                      {% if key == values.product_variant_one.variant.title %}
-                        selected
-                      {% endif  %}
-                    >{{ value }}</option>
+                    {% for v in varient_list %}
+                    <option value="{{ v.title }}"
+                            selected
+                    >{{ v.title }}</option>
                   {% endfor  %}
 
                 </select>
