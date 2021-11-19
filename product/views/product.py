@@ -20,7 +20,7 @@ class CreateProductView(generic.TemplateView):
 
 
 def search(request):
-    queryset_list = ProductVariantPrice.objects.order_by('created_at')
+    queryset_list = ProductVariantPrice.objects.order_by('id')
 
     # title
     if 'title' in request.POST:
